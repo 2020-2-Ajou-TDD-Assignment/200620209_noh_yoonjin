@@ -35,19 +35,35 @@ public class BowlingGameTest {
      }
 	
 	@Ignore("until we walk frame by frame")
-	@Test public void testOneSpare() {
+	@Test 
+	public void testOneSpare() {
 		rollSpare();
 		g.roll(3);
 		rollMany(17,0);
 		assertEquals(16,g.score());
 	}
 	
-	@Test public void testOneStrike() {
+	@Test 
+	public void testOneStrike() {
 		rollStrike();
 		g.roll(3);
 		g.roll(4);
 		rollMany(16,0);
 		assertEquals(24,g.score());
+	}
+	
+	@Test 
+	public void testPerfectGame() {	
+		rollMany(12,10);
+		assertEquals(300,g.score());
+	}
+	
+	@Test 
+	public void testTwoStrikes() {	
+		rollStrike();
+		rollStrike();
+		rollMany(0,16);
+		assertEquals(30,g.score());
 	}
 	
 	private void rollStrike() {
